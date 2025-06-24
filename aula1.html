@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flamengo - Paixão Nacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        :root {
+            --fla-red: #CC092F;
+            --fla-dark-red: #A60826;
+            --fla-black: #000000;
+            --fla-white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--fla-black);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--fla-red), var(--fla-dark-red));
+            color: var(--fla-white);
+            padding: 1rem 0;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 15px;
+        }
+
+        .logo-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--fla-white);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero {
+            background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(204, 9, 47, 0.5));
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            color: var(--fla-white);
+            z-index: 1;
+        }
+
+        .hero-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--fla-red);
+            color: var(--fla-white);
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: button;
+        }
+
+        .btn:hover {
+            background-color: var(--fla-dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            color: var(--fla-red);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--fla-red);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background-color: var(--fla-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.5rem;
+            color: var(--fla-red);
+        }
+
+        .news-content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .news-date {
+            display: flex;
+            align-items: center;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .news-date i {
+            margin-right: 5px;
+        }
+
+        .players {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .player-card {
+            background-color: var(--fla-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .player-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .player-info {
+            padding: 1rem;
+            background-color: var(--fla-red);
+            color: var(--fla-white);
+        }
+
+        .player-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 0.3rem;
+        }
+
+        .player-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .achievements {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .achievement-item {
+            text-align: center;
+            background-color: var(--fla-white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 200px;
+            max-width: 250px;
+        }
+
+        .achievement-icon {
+            font-size: 3rem;
+            color: var(--fla-red);
+            margin-bottom: 1rem;
+        }
+
+        .achievement-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--fla-black);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-title {
+            color: var(--fla-red);
+            font-weight: 700;
+        }
+
+        footer {
+            background-color: var(--fla-black);
+            color: var(--fla-white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons a {
+            color: var(--fla-white);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--fla-red);
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--fla-white);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--fla-red);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .animate-slide {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .animate-slide.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .players {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://logodownload.org/wp-content/uploads/2016/09/flamengo-logo-escudo.png" alt="Flamengo Logo" class="floating" />
+                <div class="logo-text">
+                    <h1>Flamengo</h1>
+                    <p>Paixão Nacional</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a href="#news"><i class="fas fa-newspaper"></i> Notícias</a></li>
+                    <li><a href="#team"><i class="fas fa-users"></i> Elenco</a></li>
+                    <li><a href="#titles"><i class="fas fa-trophy"></i> Títulos</a></li>
+                    <li><a href="#games"><i class="fas fa-calendar-alt"></i> Jogos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Sempre Flamengo</h2>
+            <p>O mais querido do Brasil, com uma torcida apaixonada e uma história repleta de glórias. Junte-se a Nação Rubro-Negra!</p>
+            <a href="#" class="btn">Seja sócio-torcedor</a>
+        </div>
+    </section>
+
+    <section class="container" id="news">
+        <div class="section-title">
+            <h2>Últimas Notícias</h2>
+        </div>
+        <div class="news-grid">
+            <article class="news-card animate-slide">
+                <img src="https://conteudo.imguol.com.br/c/esporte/f3/2023/02/14/flamengo-samba-no-rio-contra-o-botafogo-pelo-brasileirao-1676394659117_v2_450x337.jpg" alt="Flamengo vence clássico" class="news-img" />
+                <div class="news-content">
+                    <h3>Flamengo vence clássico com gol de Pedro</h3>
+                    <p>O Mengão mostrou sua força mais uma vez e venceu o Botafogo por 2x1 com gol decisivo do Pedro.</p>
+                    <div class="news-date"><i class="fas fa-calendar-alt"></i> 20 de junho de 2025</div>
+                </div>
+            </article>
+
+            <article class="news-card animate-slide">
+                <img src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/210/2023/03/flamengo-entra-em-campo.jpg" alt="Treino do Flamengo" class="news-img" />
+                <div class="news-content">
+                    <h3>Treino intenso para a final da Libertadores</h3>
+                    <p>A equipe está focada e preparada para a decisão mais importante do continente.</p>
+                    <div class="news-date"><i class="fas fa-calendar-alt"></i> 18 de junho de 2025</div>
+                </div>
+            </article>
+
+            <article class="news-card animate-slide">
+                <img src="https://cdn.getyourguide.com/img/tour/5a40a4e6827a9.jpeg/99.jpg" alt="Torcida do Flamengo" class="news-img" />
+                <div class="news-content">
+                    <h3>Torcida Rubro-Negra lota estádio em mais um recorde</h3>
+                    <p>A paixão da torcida é o combustível para a equipe buscar mais conquistas.</p>
+                    <div class="news-date"><i class="fas fa-calendar-alt"></i> 15 de junho de 2025</div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="container" id="team">
+        <div class="section-title">
+            <h2>Destaques do Elenco</h2>
+        </div>
+        <div class="players">
+            <!-- Pedro substituindo Gabigol -->
+            <div class="player-card animate-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Pedro_Rodrigues_Filho.jpg" alt="Pedro" class="player-img" />
+                <div class="player-info">
+                    <h3>Pedro</h3>
+                    <p>Atacante</p>
+                </div>
+            </div>
+
+            <!-- Goleiro Rossi substituindo Diego Alves -->
+            <div class="player-card animate-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Rafael_Rossi.jpg" alt="Rossi" class="player-img" />
+                <div class="player-info">
+                    <h3>Rossi</h3>
+                    <p>Goleiro</p>
+                </div>
+            </div>
+
+            <div class="player-card animate-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Arrascaeta_2020.jpg" alt="Arrascaeta" class="player-img" />
+                <div class="player-info">
+                    <h3>Arrascaeta</h3>
+                    <p>Meio-campo</p>
+                </div>
+            </div>
+
+            <div class="player-card animate-slide">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Willian_Arão.jpg" alt="Arão" class="player-img" />
+                <div class="player-info">
+                    <h3>Willian Arão</h3>
+                    <p>Volante</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="titles">
+        <div class="section-title">
+            <h2>Principais Títulos</h2>
+        </div>
+        <div class="achievements">
+            <div class="achievement-item">
+                <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+                <div class="achievement-number">7</div>
+                <div class="achievement-title">Campeonato Brasileiro</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon"><i class="fas fa-globe"></i></div>
+                <div class="achievement-number">2</div>
+                <div class="achievement-title">Libertadores</div>
+            </div>
+            <div class="achievement-item">
+                <div class="achievement-icon"><i class="fas fa-star"></i></div>
+                <div class="achievement-number">3</div>
+                <div class="achievement-title">Mundial de Clubes</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="games">
+        <div class="section-title">
+            <h2>Próximos Jogos</h2>
+        </div>
+        <table style="width:100%; border-collapse: collapse; font-family: 'Open Sans', sans-serif;">
+            <thead style="background-color: var(--fla-red); color: var(--fla-white);">
+                <tr>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Data</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Adversário</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Competição</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Local</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">27/06/2025</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Vasco</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Campeonato Carioca</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Maracanã</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">04/07/2025</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Palmeiras</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Brasileirão</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Allianz Parque</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-icons">
+                <a href="https://facebook.com/flamengo" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/flamengo" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/flamengo" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/flamengo" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#">Contato</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Flamengo. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simples animação de slide para os elementos com classe animate-slide
+        window.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-slide');
+            animatedElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('show');
+                }, 150 * index);
+            });
+        });
+    </script>
+</body>
+</html>
